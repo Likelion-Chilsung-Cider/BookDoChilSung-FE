@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { Outlet, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useEffect } from 'react';
+import NavBar from './components/header/NavBar';
+
+const WrapApp = styled.div`
+  max-width: 430px;
+  margin: auto;
+  @media (min-width: 431px) {
+    border-left: 0.5px solid #eee;
+    border-right: 0.5px solid #eee;
+  }
+`;
 
 function App() {
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   setNavigate(navigate);
+  // }, [navigate]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <WrapApp>
+        <Outlet />
+        <NavBar />
+      </WrapApp>
+    </>
   );
 }
 
