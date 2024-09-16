@@ -1,0 +1,210 @@
+.searchBooks {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #FFFFFF;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+
+    .backButton {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 15px 10px 15px 0;
+
+      .icon {
+        width: 12px;
+        height: 24px;
+      }
+    }
+
+    .searchBar {
+      display: flex;
+      align-items: center;
+      width: 330px;
+      height: 25px;
+      flex-grow: 1;
+      background-color: #FFFFFF;
+      border: 3px solid #A7D6AB;
+      border-radius: 10px;
+      padding: 5px;
+      margin-left: 5px;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+
+      input {
+        border: none;
+        background: transparent;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        color: #333;
+      }
+    }
+  }
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    overflow-y: auto;
+  }
+
+  .bookItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 85%;
+    height: 100px;
+    margin: 15px 0;
+    padding: 12px;
+    border: 2.5px solid #A7D6AB;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+
+    .bookCover {
+      width: 74px;
+      height: auto;
+      margin-right: 10px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .bookDetails {
+      text-align: left;
+      
+      h3 { /* 책 제목 */
+        margin: 0;
+        font-size: 17px;
+        font-family: Tmoney-ExtraBold;
+        color: #1F1F21;
+        white-space: nowrap; 
+        max-width: 200px;           /* 제목이 너무 길 경우 일정 너비로 제한 */
+        overflow: hidden;           /* 넘친 부분 텍스트 숨기기 */
+        text-overflow: ellipsis;    /* ... 말줄임 효과 */
+      }
+      
+      p {
+        margin: 5px 0;
+        font-size: 11px;
+        color: #1F1F21;
+      }
+    }
+  }
+
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+
+    p {
+      font-size: 18px;
+      color: #1F1F21;
+    }
+  }
+  .popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #FFFFFF;
+    border-radius: 15px 15px 0 0;
+    padding: 20px;
+    height: 60%;
+  }
+  
+  .popupContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  
+    h2 {
+      font-size: 18px;
+      font-family: Tmoney-ExtraBold;
+      color: #1F1F21;
+    }
+  
+    .statusButtons {
+      display: flex;
+      justify-content: space-around;
+  
+      button {
+        background-color: #FFFFFF;
+        border: 2px solid #A7D6AB;
+        color: #1F1F21;
+        padding: 8px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #A7D6AB;
+        color: white;
+      }
+    }
+  
+    .datePicker {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+  
+      label {
+        font-size: 16px;
+        color: #1F1F21;
+        margin-bottom: 5px;
+      }
+  
+      input {
+        border: 2.5px solid #A7D6AB;
+        border-radius: 10px;
+        padding: 3px;
+        font-size: 14px;
+        outline: none;
+        color: #1F1F21;
+        text-align: center;
+      }
+    }
+  
+    .saveButton {
+      margin-bottom: 70px;
+      width: 100%;
+      padding: 15px;
+      background-color: #A7D6AB;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #85c28c;
+      }
+    }
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #A7D6AB;
+    cursor: pointer;
+  }
+  
+}

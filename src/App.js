@@ -20,6 +20,15 @@ function App() {
   //   setNavigate(navigate);
   // }, [navigate]);
 
+  useEffect(() => {
+    // localStorage나 sessionStorage에서 로그인 상태를 확인
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // 토큰이 없으면 로그인 페이지로 리디렉션
+      navigate('/login');
+    }
+  }, [navigate]);
+
   return (
     <>
       <WrapApp>

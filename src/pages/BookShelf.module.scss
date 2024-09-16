@@ -1,0 +1,125 @@
+.searchBooks {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #FFFFFF;
+  
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+  
+      .backButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin: 15px 10px 15px 0;
+  
+        .icon {
+          width: 12px;
+          height: 24px;
+        }
+      }
+  
+      .searchBar {
+        display: flex;
+        align-items: center;
+        width: 330px;
+        height: 25px;
+        flex-grow: 1;
+        background-color: #FFFFFF;
+        border: 3px solid #A7D6AB;
+        border-radius: 10px;
+        padding: 5px;
+        margin-left: 5px;
+  
+        .icon {
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+        }
+  
+        input {
+          border: none;
+          background: transparent;
+          width: 100%;
+          font-size: 16px;
+          outline: none;
+          color: #333;
+        }
+      }
+    }
+  
+    /* 필터링 버튼 */
+    .filters {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        padding-right: 15px;
+        
+        button {
+          flex-grow: 1;
+          margin-left: 15px;
+          height: 30px;
+          background-color: #FFFFFF;
+          border: 3px solid #A7D6AB;
+          border-radius: 10px;
+          font-size: 14px;
+          color: #1F1F21;
+          cursor: pointer;
+          outline: none;
+        }
+
+      
+        .active {
+          background-color: #C6EFC9;
+        }
+      }
+      
+    .bookList {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .bookCard {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 85%;
+      height: 100px;
+      margin-left: 14px;
+      padding: 12px;
+      border: 2.5px solid #A7D6AB;
+      border-radius: 20px;
+      background-color: #FFFFFF;
+
+      .bookCover {
+        width: 74px;
+        height: auto;
+        margin-right: 10px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+  
+      .bookInfo {
+        h3 { /* 책 제목 */
+          margin: 0;
+          font-size: 17px;
+          font-family: Tmoney-ExtraBold;
+          color: #1F1F21;
+          white-space: nowrap; 
+          max-width: 200px;           /* 제목이 너무 길 경우 일정 너비로 제한 */
+          overflow: hidden;           /* 넘친 부분 텍스트 숨기기 */
+          text-overflow: ellipsis;    /* ... 말줄임 효과 */
+        }
+  
+        p {
+          margin: 5px 0;
+          font-size: 11px;
+          color: #1F1F21;
+        }
+      }
+    }
+  }  
