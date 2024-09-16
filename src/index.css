@@ -1,8 +1,19 @@
+@font-face {
+  font-family: 'Tmoney-ExtraBold';
+  src: url('./fonts/TmoneyRoundWindExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Tmoney-Regular';
+  src: url('./fonts/TmoneyRoundWindRegular.ttf');
+}
+
+* {
+  font-family: 'Tmoney-Regular';
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Tmoney-Regular';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

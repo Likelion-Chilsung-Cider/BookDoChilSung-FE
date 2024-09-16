@@ -1,0 +1,119 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #FFFFFF;
+
+  .bookScrollContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+
+    .bookScroll {
+      display: flex;
+      align-items: center;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+
+    .bookItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 150px;
+      margin: 0 10px;
+      background-color: #FFFFFF;
+      border-radius: 15px;
+      border: 2.5px solid #A7D6AB;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+
+      &.selected {
+        transform: scale(1.3);
+        opacity: 1;
+      }
+
+      &:not(.selected) {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+
+      .bookCover {
+        width: 60%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .statusContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    .statusButton {
+      width: 190px;
+      background-color: #A7D6AB;
+      color: #FFFFFF;
+      font-size: 21px;
+      font-weight: 800;
+      font-family: TmoneyRoundWindExtraBold;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: default;
+    }
+  }
+
+  .progressBar {
+    width: 90%;
+    height: 20px;
+    background-color: #E4ECE4;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+
+    .progress {
+      height: 100%;
+      background-color: #A7D6AB;
+      border-radius: 10px;
+    }
+  }
+
+  .bookInfo {
+    width: 85%;
+    height: 150px;
+    background-color: #FFFFFF;
+    border: 3px solid #A7D6AB;
+    border-radius: 20px;
+    text-align: left;
+    padding: 5px 10px;
+  
+    .infoRow {
+      display: flex;
+  
+      .label {
+        font-size: 16px;
+        color: #1F1F21;
+        font-weight: 800;
+        font-family: TmoneyRoundWindExtraBold;
+        flex-basis: 20%;
+      }
+  
+      span {
+        margin: 11px 0 0 13px;
+        font-size: 14px;
+        color: #1F1F21;
+        flex-basis: 80%;
+      }
+    }
+  }
+}
