@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    .back {
+        background-size: 375px 375px;
+        background-image: url('../svg/bookshelf_background.svg');
+        background-repeat: no-repeat;
+        object-fit: contain;
+    }
+
+    .top_bar_div {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 12px;
+            height: 24px;
+            margin-top: 35px;
+            margin-left: 18px;
+        }
+
+        p {
+            font-size: 22px;
+            color: #1F1F21;
+            margin-top: 34px;
+            margin-right: 14px;
+        }
+    }
+
+    .when {
+        margin-top: 50px;
+        text-align: center;
+        color: #1F1F21;
+        font-size: 18px;
+    }
+
+    .star_div {
+        margin-top: 11px;
+        text-align: center;
+
+        img {
+            height: 24px;
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+    }
+
+    .cover_div {
+        display: flex;
+        justify-content: center;
+    }
+
+    .bookcover {
+        margin-top: 34px;
+        width: 201.21px;
+        height: 277px;
+        background-color: #fff;
+        border-radius: 15px;
+        border: 5px solid #A7D6AB;
+    }
+
+    .book_info_top_div {
+        display: flex;
+        margin-top: 41px;
+        margin-left: 12px;
+        margin-right: 12px;
+        justify-content: center;
+
+        div {
+            margin-left: 4px;
+            margin-right: 4px;
+            height: 45px;
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            color: #1F1F21;
+            font-size: 25px;
+            border-radius: 13px;
+            border: 4px solid #A7D6AB;
+            background-color: #fff;
+        }
+
+        div.active {
+            background-color: #C6EFC9;
+        }
+    }
+    .popup {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background-color: #FFFFFF;
+        border-radius: 15px 15px 0 0;
+        padding: 20px;
+        height: 60%;
+      }
+      
+      .popupContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      
+        h2 {
+          font-size: 18px;
+          font-family: Tmoney-ExtraBold;
+          color: #1F1F21;
+          margin-top: 23px;
+        }
+      
+        .statusButtons {
+          display: flex;
+          justify-content: space-around;
+      
+          button {
+            background-color: #FFFFFF;
+            border: 2px solid #A7D6AB;
+            color: #1F1F21;
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          .active {
+            background-color: #A7D6AB;
+            color: white;
+          }
+        }
+      
+        .datePicker {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+      
+          label {
+            font-size: 16px;
+            color: #1F1F21;
+            margin-bottom: 5px;
+          }
+      
+          input {
+            border: 2.5px solid #A7D6AB;
+            border-radius: 10px;
+            padding: 3px;
+            font-size: 14px;
+            outline: none;
+            color: #1F1F21;
+            text-align: center;
+          }
+        }
+      
+        .saveButton {
+          margin-bottom: 70px;
+          width: 100%;
+          padding: 15px;
+          background-color: #A7D6AB;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          font-size: 18px;
+          font-weight: 800;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      
+          &:hover {
+            background-color: #85c28c;
+          }
+        }
+      }
+      
+      .closeButton {
+        position: absolute;
+        top: 10px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #A7D6AB;
+        cursor: pointer;
+      }
+      
+    
+}
