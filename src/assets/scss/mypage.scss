@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    .back {
+        background-size: 100% 375px;
+        background-image: url('../svg/bookshelf_background.svg');
+        background-repeat: no-repeat;
+        object-fit: contain;
+    }
+
+    .top_bar_div {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 12px;
+            height: 24px;
+            margin-top: 30px;
+            margin-left: 18px;
+        }
+    }
+
+    .info_div {
+        display: grid;
+        justify-items: center;
+
+        .picture {
+            width: 212px;
+            height: 212px;
+            background-color: #fff;
+            border: 4px solid #A7D6AB;
+            border-radius: 100%;
+            margin-top: 2px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .name {
+            font-size: 27px;
+            color: #1F1F21;
+            margin-top: 35px;
+        }
+
+        .fix {
+            font-size: 17px;
+            color: #4E4D4D;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .change {
+            font-size: 20px;
+            color: #1F1F21;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .txt {
+            font-size: 27px;
+            color: #1F1F21;
+            margin-top: 35px;
+        }
+
+        .date {
+            font-size: 27px;
+            color: #1F1F21;
+        }
+    }
+    .title{
+        margin-top: 24px;
+        margin-left: 16px;
+        font-size: 25px;
+        color: #1F1F21;
+    }
+    .month_div{
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 10px;
+        border: 3px solid #A7D6AB;
+        border-radius: 9.6px;
+        min-height: 233px;
+        margin-bottom: 111px;
+    }
+}
