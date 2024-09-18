@@ -1,83 +1,85 @@
-import React, { useState } from 'react';
-import bookshelf_back from '../assets/svg/bookshelf_back.svg'
-import full_star from '../assets/svg/full_star.svg'
-import '../assets/scss/bookshelf.scss'
-import BookInfo from '../components/BookInfo';
-import BookNote from '../components/BookNote';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './BookShelf.module.scss';
 
+const BookShelf = () => {
+  const [filter, setFilter] = useState('전체');
+  const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]); // 필터링된 책 목록 저장
+  const navigate = useNavigate();
 
-export default function BookShelf() {
-  const [selectedTab, setSelectedTab] = useState('book'); // 기본값은 'book'
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const closeIconClick = () => {
-    setIsPopupVisible(true);
-  }
-  const handlePopupClose = () => {
-    setIsPopupVisible(false);
+  useEffect(() => {
+    const savedBooks = JSON.parse(localStorage.getItem('savedBooks')) || [];
+    setBooks(savedBooks);
+    setFilteredBooks(savedBooks); // 초기 상태로 전체 책 목록 설정
+  }, []);
+
+  const handleBackClick = () => {
+    navigate(-1);
   };
+
+  // 필터링 함수
+  const handleFilterClick = (filterType) => {
+    setFilter(filterType);
+
+    let filtered = books; // 기본적으로 모든 책 포함
+
+    if (filterType === '읽을 책') {
+      filtered = books.filter(book => book.reading_status === 0);
+    } else if (filterType === '읽는 중') {
+      filtered = books.filter(book => book.reading_status === 1);
+    } else if (filterType === '읽은 책') {
+      filtered = books.filter(book => book.reading_status === 2);
+    }
+
+    setFilteredBooks(filtered); // 필터링된 책 목록 저장
+  };
+
   return (
-    <div className='back'>
-      <div className='top_bar_div'>
-        <img src={bookshelf_back} alt="" />
-        <p onClick={closeIconClick}>수정</p>
-      </div>
-      <p className='when'>2024.08.19 - 2024.8.20</p>
-      <div className='star_div'>
-        <img src={full_star} alt="" id='1' />
-        <img src={full_star} alt="" id='2' />
-        <img src={full_star} alt="" id='3' />
-        <img src={full_star} alt="" id='4' />
-        <img src={full_star} alt="" id='5' />
-      </div>
-      <div className='cover_div'>
-        <div className='bookcover'></div>
-      </div>
-      {/* 탭 버튼 */}
-      <div className='book_info_top_div'>
-        <div
-          className={`main ${selectedTab === 'book' ? 'active' : ''}`}
-          onClick={() => setSelectedTab('book')}
-        >
-          책 정보
-        </div>
-        <div
-          className={`sub ${selectedTab === 'note' ? 'active' : ''}`}
-          onClick={() => setSelectedTab('note')}
-        >
-          메모
+    <div className={styles.searchBooks}>
+      <div className={styles.header}>
+        <button className={styles.backButton} onClick={handleBackClick}>
+          <img src="/assets/icons/arrow.png" alt="뒤로가기" className={styles.icon} />
+        </button>
+        <div className={styles.searchBar}>
+          <img src="/assets/icons/c_search.png" alt="검색" className={styles.icon} />
+          <input type="text" />
         </div>
       </div>
 
-      {/* 탭에 따른 내용 표시 */}
-      {selectedTab === 'book' ? <BookInfo /> : <BookNote />}
+      {/* 필터링 */}
+      <div className={styles.filters}>
+        <button 
+          className={filter === '전체' ? styles.active : ''} 
+          onClick={() => handleFilterClick('전체')}
+        >전체</button>
+        <button 
+          className={filter === '읽을 책' ? styles.active : ''} 
+          onClick={() => handleFilterClick('읽을 책')}
+        >읽을 책</button>
+        <button 
+          className={filter === '읽는 중' ? styles.active : ''} 
+          onClick={() => handleFilterClick('읽는 중')}
+        >읽는 중</button>
+        <button 
+          className={filter === '읽은 책' ? styles.active : ''} 
+          onClick={() => handleFilterClick('읽은 책')}
+        >읽은 책</button>
+      </div>
 
-      {isPopupVisible && (
-        <div className='popup'>
-          <div className='popupContent'>
-            <button className='closeButton' onClick={handlePopupClose} >X</button>
-
-            <h2>독서 상태</h2>
-            <div className='statusButtons'>
-              <button className='active' >읽을 책</button>
-              <button className='active' >읽는 중</button>
-              <button className='active' >읽은 책</button>
+      <div className={styles.bookList}>
+        {filteredBooks.map((book, index) => (
+          <div className={styles.bookCard} key={index}>
+            <img src={book.book_cover} alt={book.title} className={styles.bookCover} />
+            <div className={styles.bookInfo}>
+              <h3>{book.title}</h3>
+              <p>{book.start_date} - {book.end_date}</p>
             </div>
-
-            <h2>독서 기간</h2>
-            <div className='datePicker'>
-              <label>독서 시작</label>
-              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-            </div>
-            <div className='datePicker'>
-              <label>독서 종료</label>
-              <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-            </div>
-
-            <button className='saveButton'>저장</button>
           </div>
-        </div>)}
+        ))}
+      </div>
+    </div>
+  );
+};
 
-    </div>)
-}
+export default BookShelf;
