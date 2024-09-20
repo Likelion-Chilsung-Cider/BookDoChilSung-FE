@@ -5,47 +5,45 @@ import styles from './LoginMain.module.scss';
 const LoginMain = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // 카카오 JavaScript SDK 초기화
-    if (!window.Kakao.isInitialized()) {
-      window.Kakao.init("KAKAO_API_KEY");  // JavaScript 키 넣어야 함
-    }
-    console.log(window.Kakao.isInitialized()); // SDK 초기화 여부 확인
-  }, []);
+  // 카카오 OAuth 리디렉션 URL
+  const kakaoOAuthUrl = 'https://bookdochilsung.site/oauth2/authorization/kakao';
 
+  // 카카오 로그인 버튼 클릭 핸들러
   const handleKakaoLogin = () => {
-    window.Kakao.Auth.login({
-      success: (authObj) => {
-        console.log("카카오 로그인 성공", authObj);
-
-        // 로그인 성공 후 사용자 정보 요청
-        window.Kakao.API.request({
-          url: '/v2/user/me',
-          success: (res) => {
-            console.log("카카오 사용자 정보:", res);
-
-            // 카카오 사용자 ID를 user_seq로 사용
-            const userSeq = res.id;  // 카카오에서 제공하는 고유 사용자 ID
-
-            // user_seq 및 카카오 토큰 저장
-            localStorage.setItem('user_seq', userSeq);
-            localStorage.setItem('kakao_token', authObj.access_token);
-
-            console.log('user_seq 저장:', userSeq);
-
-            // 로그인 성공 후 홈으로 리디렉션
-            navigate('/');
-          },
-          fail: (err) => {
-            console.error("사용자 정보 요청 실패:", err);
-          }
-        });
-      },
-      fail: (err) => {
-        console.error("카카오 로그인 실패", err);
-      },
-    });
+    window.location.href = kakaoOAuthUrl; // 사용자를 카카오 OAuth 페이지로 리디렉션
   };
+
+  useEffect(() => {
+    // URL에서 'code' 쿼리 파라미터 체크
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      console.log("카카오 로그인 성공. 코드: ", code);
+
+      // 서버에 POST 요청으로 코드 전달 및 토큰 요청
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}) // 서버에 코드 전송
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("서버 응답: ", data);
+
+        // 로그인 토큰 localStorage에 저장
+        localStorage.setItem('token', data.access_token);
+
+        // 홈 화면으로 리디렉션
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error("로그인 요청 중 에러 발생: ", error);
+      });
+    }
+  }, []);
 
   return (
     <div 
