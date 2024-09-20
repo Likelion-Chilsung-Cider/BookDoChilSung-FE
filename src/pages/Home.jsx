@@ -15,7 +15,7 @@ const Home = () => {
     const fetchBookInfo = async () => {
       try {
         const user_seq = localStorage.getItem('user_seq');  // localStorage에서 user_seq 가져오기
-        const response = await fetch(`/api/book/searchBookInfo?user_seq=${user_seq}&reading_status=0`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/book/searchBookInfo?user_seq=${user_seq}&reading_status=0`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

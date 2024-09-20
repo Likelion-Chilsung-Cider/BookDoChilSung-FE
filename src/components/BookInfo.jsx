@@ -10,11 +10,12 @@ const BookInfo = () => {
         </div>
         <div>
           <p className='book_info_title'>출판사</p>
-          <p className='book_info_text'></p>
+          <p className='book_info_text'>인플루엔셜</p>
         </div>
         <div>
           <p className='book_info_title'>ISBN</p>
-          <p className='book_info_text'></p>
+          <p className='book_info_text'>
+          9788996991342</p>
         </div>
         <div>
           <p className='book_info_title'>페이지</p>

@@ -11,7 +11,9 @@ import Home from './pages/Home';
 import KakaoLoginAuth from './pages/KakaoLoginAuth';
 import SearchBooks from './pages/SearchBooks';
 import BookShelf from './pages/BookShelf';
+import BookShelfDetail from './pages/BookShelfDetail';
 import MyPage from './pages/MyPage';
+import BookDetail from './pages/BookShelfDetail'
 
 const setVh = () => {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'SearchBooks', element: <SearchBooks /> },
-      { path: 'BookShelf', element: <BookShelf /> },
+      { path: 'BookShelf', element: <BookShelfDetail /> },
       { path: 'MyPage', element: <MyPage /> },
     ],
   },
