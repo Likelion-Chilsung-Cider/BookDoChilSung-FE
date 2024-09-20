@@ -1,0 +1,48 @@
+name: React CICD Github Action
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 리포지토리 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Node.js 설정
+      - name: Set up Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3. 리액트 빌드
+      - name: Install and build React
+        run: |
+          npm install
+          npm run build
+
+      # 4. 빌드된 파일 확인
+      - name: List build files
+        run: ls -al ./build
+
+      # 5. 빌드 파일 압축 (Elastic Beanstalk에 배포하기 위해)
+      - name: Compress build directory
+        run: zip -r build.zip ./build
+
+      # 6. Elastic Beanstalk 서버로 빌드 파일 복사 및 배포
+      - name: Beanstalk Deploy
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:        
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: bookdochilsung
+          environment_name: bookdochilsung-env
+          version_label: github-action-${{ github.sha }}
+          region: ap-northeast-2
+          deployment_package: build.zip
